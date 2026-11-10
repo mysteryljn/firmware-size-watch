@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "firmware-size-watch"
+version = "0.1.0"
+description = "Review GNU ld map memory budgets and explain firmware ROM and RAM growth."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "mysteryljn"}]
+dependencies = []
+
+[project.scripts]
+firmware-size-watch = "firmware_size_watch.cli:main"
+
+[project.urls]
+Repository = "https://github.com/mysteryljn/firmware-size-watch"
+Issues = "https://github.com/mysteryljn/firmware-size-watch/issues"
+
+[tool.setuptools.packages.find]
+include = ["firmware_size_watch*"]
+
+[tool.setuptools.package-data]
+firmware_size_watch = ["fixtures/*"]
