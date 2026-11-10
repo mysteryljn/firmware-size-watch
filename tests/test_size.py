@@ -3,6 +3,7 @@ import io
 import json
 from pathlib import Path
 import re
+import platform
 import shutil
 import subprocess
 import sys
@@ -148,7 +149,7 @@ class SizeTests(unittest.TestCase):
             self.assertEqual(run.returncode, 0, run.stderr)
             self.assertTrue((Path(temp) / "report.html").is_file())
 
-    @unittest.skipUnless(shutil.which("gcc") and shutil.which("ld") and shutil.which("readelf"), "GNU gcc/ld/readelf not installed")
+    @unittest.skipUnless(platform.system() != "Windows" and shutil.which("gcc") and shutil.which("ld") and shutil.which("readelf"), "GNU ELF toolchain not installed")
     def test_actual_gnu_linker_map_matches_elf_sections(self):
         with tempfile.TemporaryDirectory() as temp:
             temp = Path(temp)
